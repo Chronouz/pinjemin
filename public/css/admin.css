@@ -34,7 +34,7 @@
 }
 
 .sidebar ul li.active {
-    background-color: #5d5d5d;
+    background-color: #ffffff;
     border-radius: 5px;
 }
 
@@ -112,7 +112,7 @@
     align-items: center;
     gap: 8px;
     font-size: 16px;
-    color: #fff;
+    color: #000000;
 }
 
 .logout-button img {
