@@ -12,7 +12,7 @@
 
 .sidebar {
     width: 20%;
-    background-color: #9BDCFD;
+    background-color: #9bdcfd;
     padding: 20px;
     min-height: 100vh;
 }
@@ -23,7 +23,6 @@
     margin-bottom: 20px;
 }
 
-
 .sidebar ul {
     list-style: none;
 }
@@ -32,11 +31,10 @@
     padding: 20px;
     margin-bottom: 5px;
     cursor: pointer;
-    
 }
 
 .sidebar ul li.active {
-    background-color: #ffffff;
+    background-color: #5d5d5d;
     border-radius: 5px;
 }
 
@@ -72,7 +70,7 @@
 
 .card {
     flex: 1;
-    background-color: #9BDCFD;
+    background-color: #9bdcfd;
     height: 80px;
     border-radius: 5px;
     height: 200px;
@@ -88,7 +86,6 @@
     width: 700px;
     height: 500px;
     margin-top: 50px;
-
 }
 
 .side-info {
@@ -98,10 +95,27 @@
     gap: 10px;
 }
 
-.recent-transactions, .new-users {
+.recent-transactions,
+.new-users {
     background-color: #d3d3d3;
     padding: 10px;
     border-radius: 5px;
     margin-top: 50px;
     height: 200px;
+}
+
+.logout-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    color: #fff;
+}
+
+.logout-button img {
+    width: 20px;
+    height: 20px;
 }

@@ -21,8 +21,13 @@
             <div class="bottom-links">
                 <ul>
                     <li>
-                        <img src="{{ asset('images/Logout.png') }}" alt="Log out Icon" class="icon">
-                        Log out
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="logout-button">
+                                <img src="{{ asset('images/Logout.png') }}" alt="Log out Icon" class="icon">
+                                Log out
+                            </button>
+                        </form>
                     </li>
                     <li>
                         <img src="{{ asset('images/Settings.png') }}" alt="Settings Icon" class="icon">
