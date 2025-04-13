@@ -1,8 +1,18 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\BarangController;
+
+Route::get('/login', [AuthController::class, 'showlogin'])->name('login.show');
+Route::post('/login/submit', [AuthController::class, 'submitlogin'])->name('login.submit');
+
+
+Route::get('/barang', [BarangController::class, 'index']);
+
+
 
 Route::get('/', function () {
     return view('welcome');
