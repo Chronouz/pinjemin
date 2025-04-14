@@ -9,10 +9,8 @@ use App\Http\Controllers\BarangController;
 Route::get('/login', [AuthController::class, 'showlogin'])->name('login.show');
 Route::post('/login/submit', [AuthController::class, 'submitlogin'])->name('login.submit');
 
-
-Route::get('/barang', [BarangController::class, 'index']);
-
-
+Route::get('/barang', [BarangController::class, 'index'])->name('barang.index');
+Route::get('/barang/{barang}', [BarangController::class, 'show'])->name('barang.show');
 
 Route::get('/', function () {
     return view('welcome');
