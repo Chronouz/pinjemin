@@ -16,6 +16,9 @@ Route::get('/barang/{barang}', [BarangController::class, 'show'])->name('barang.
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/akun', function () {
+    return view('akun.akun');
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
