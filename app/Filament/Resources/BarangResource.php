@@ -31,7 +31,7 @@ class BarangResource extends Resource
                     ->label('Deskripsi')
                     ->required(),
                 Forms\Components\TextInput::make('cost')
-                    ->label('Harga')
+                    ->label('Harga Sewa')
                     ->numeric()
                     ->required(),
                 Forms\Components\TextInput::make('location')
@@ -53,8 +53,6 @@ class BarangResource extends Resource
                     ->required(),
                 Forms\Components\FileUpload::make('image_path')
                     ->label('Gambar')
-                    ->image()
-                    ->directory('barang-images')
                     ->required(),
             ]);
     }

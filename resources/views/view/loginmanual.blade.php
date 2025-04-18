@@ -16,7 +16,7 @@
             <div class="col-md-3">
                 <div class="card">
                     <div class="card-body text-start">
-                        <form action="{{ route('route.submit') }}" method="post">
+                        <form action="{{ route('login') }}" method="post">
                             @csrf
                             <label>Username</label>
                             <input type="text" name="username" class="form-control mb-2">
