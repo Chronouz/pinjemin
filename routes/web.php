@@ -22,8 +22,13 @@ Route::get('/register', [AuthController::class, 'showregister'])->name('register
 Route::get('/login', [AuthController::class, 'showlogin'])->name('login.show');
 Route::post('/login/submit', [AuthController::class, 'submitlogin'])->name('login.submit');
 
+
 Route::get('/barang', [BarangController::class, 'index'])->name('barang.index');
 Route::get('/barang/{barang}', [BarangController::class, 'show'])->name('barang.show');
+
+Route::get('/', function () {
+    return view('welcome');
+});
 
 Route::get('/dashboard', function () {
     return redirect()->route('home'); // Arahkan ke halaman dashboard
