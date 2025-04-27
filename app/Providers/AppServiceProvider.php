@@ -8,6 +8,8 @@ use App\Mail\YourMailable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Auth;
 
 class AppServiceProvider extends ServiceProvider 
 {
@@ -32,6 +34,10 @@ class AppServiceProvider extends ServiceProvider
                 ->line('Selamat 🥳. Akunmu berhasil dibuat di Pinjemin.')
                 ->action('Klik untuk Verifikasi Email Address mu', $url)
                 ->line('Jika Anda tidak merasa mendaftar, abaikan email ini.');
+        });
+
+        View::composer('*', function ($view) {
+            $view->with('authUser', Auth::user());
         });
     }
 }

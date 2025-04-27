@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('barang', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->string('image_path'); // Untuk menyimpan path gambar
             $table->string('name');
             $table->text('description');
@@ -22,6 +23,7 @@ return new class extends Migration
             $table->integer('stock');
             $table->string('condition');
             $table->string('link'); // Untuk menyimpan link
+            $table->boolean('status')->default(0);
             $table->timestamps();
         });
     }

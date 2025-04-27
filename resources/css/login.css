@@ -1,0 +1,86 @@
+/* Google Font: Inter */
+body {
+    font-family: 'Inter', sans-serif;
+  }
+  
+  /* Optional overrides or enhancements */
+  button {
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+
+/* Navbar styling for login.blade.php */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.6); /* Transparan dengan sedikit gelap */
+    padding: 10px 40px; /* Sama seperti di main.blade.php */
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1); /* Bayangan untuk batas */
+    position: fixed; /* Navbar tetap di atas saat scroll */
+    width: 100%; /* Lebar penuh */
+    z-index: 1000; /* Pastikan navbar berada di atas elemen lain */
+}
+
+header .logo a {
+    text-decoration: none;
+    color: white; /* Warna teks logo */
+    font-size: 1.5rem; /* Ukuran font logo */
+    font-weight: bold;
+}
+
+header nav ul {
+    display: flex;
+    gap: 20px; /* Jarak antar menu */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: white; /* Warna teks menu */
+    font-size: 1rem; /* Ukuran font menu */
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+header nav ul li a:hover {
+    color: #fab12f; /* Warna hover */
+}
+
+header .button {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Jarak antar tombol */
+}
+
+header .button button {
+    background-color: #fab12f;
+    color: black;
+    font-weight: 600;
+    border-radius: 10px;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+header .button button:hover {
+    transform: scale(1.1);
+}
+
+/* Styling untuk tombol Login */
+header .button .LoginBtn {
+    background-color: transparent; /* Tidak ada warna latar belakang */
+    color: white; /* Warna teks */
+    font-weight: 600;
+    border: 2px solid white; /* Border putih */
+    border-radius: 10px;
+    padding: 10px 20px;
+    transition: all 0.3s ease; /* Efek transisi */
+}
+
+header .button .LoginBtn:hover {
+    background-color: white; /* Warna latar belakang saat hover */
+    color: black; /* Warna teks saat hover */
+    transform: scale(1.05); /* Efek zoom saat hover */
+}

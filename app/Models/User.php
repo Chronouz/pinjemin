@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Notifications\CustomVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Concerns\HasRelationships;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -45,6 +46,24 @@ class User extends Authenticatable implements MustVerifyEmail
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function profil()
+    {
+        return $this->hasOne(Profile::class, 'user_id');
+    }
+
+    public function pinjam()
+    {
+        return $this->hasMany(Pinjam::class);
+    }
+    
+    public function permintaanMasuk() {
+        return $this->hasMany(Permintaan::class, 'pemilik_id');
+    }
+    
+    public function permintaanKeluar() {
+        return $this->hasMany(Permintaan::class, 'peminjam_id');
     }
     
 }

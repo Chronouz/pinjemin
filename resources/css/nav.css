@@ -1,0 +1,171 @@
+body {
+    background-color: #fef3e2;
+
+}
+
+/* ===============================================navbar=============================================== */
+.nav{
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+    background-color: white;
+    padding: 10px 40px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1);
+
+}
+/* -----------------------------Logo--------------------------- */
+.nav .logo a{
+    text-decoration: none;
+    color: black;
+}
+
+.nav li{
+    list-style: none;
+    margin: 0 20px;
+    align-items: center;
+}
+
+.logo a{
+    margin-right: 20px;
+    -webkit-text-stroke: 0.7px black;
+    position: relative;
+}
+.logo a::before{
+    content: '';
+    background: #fab12f;
+    width: 5px;
+    height: 5px;
+    position: absolute;
+    bottom: 0;
+    left: -5;
+
+}
+
+/* -------------------------Tombol------------------------- */
+.nav .button{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.nav .button .LoginBtn{
+    background-color: #fab12f;
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1);
+    margin-right: 10px;
+    transition: 0.5s;
+    
+}
+.nav .button .LoginBtn:hover{
+   /* background-color: #d9d9d9; */
+   transform: scale(1.1);
+   a {
+       color: white;
+       transition: 0.3s;
+   }
+}
+.nav .button .LoginBtn a{
+    color: black;
+    text-decoration: none;
+    margin-right: 40px;
+    margin-left: 40px;
+}
+.nav .button .RegisterBtn{
+    background-color: #d9d9d9;
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1);
+    margin-left: 10px;
+    transition: 0.5s;
+}
+.nav .button .RegisterBtn:hover{
+    /* background-color: #d9d9d9; */
+    transform: scale(1.1);
+    a {
+        color: white;
+        transition: 0.3s;
+    }
+}
+.nav .button .RegisterBtn a{
+    color : black;
+    text-decoration: none;
+    margin-right: 40px;
+    margin-left: 40px;
+}
+
+/* --------------------------------Menu------------------------------- */
+ul {
+    margin: 0;
+    padding: 8px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bodyparent li {
+    list-style: none;
+    margin: 0 20px;
+    transition: 0.5s;
+    opacity: 1; /* Semua elemen jelas secara default */
+    /* filter: blur(0); Tidak ada blur secara default */
+}
+
+
+.bodyparent li:hover {
+    opacity: 1; /* Elemen yang di-hover tetap jelas */
+    /* filter: blur(0); Tidak ada blur */
+}
+
+/* Blur elemen <li> lain hanya jika ada elemen <li> yang di-hover */
+.bodyparent li:not(:hover) {
+    opacity: 0.9; /* Elemen lain menjadi buram */
+    /* filter: blur(0px); Tambahkan blur pada elemen lain */
+}
+
+
+.bodyparent ul li {
+    opacity: 1; /* Semua elemen jelas */
+    /* filter: blur(0); Tidak ada blur */
+}
+
+.bodyparent li a {
+    display: block;
+    position: relative;
+    text-decoration: none;
+    padding: 5px;
+    font-size: 15px;
+    font-family: sans-serif;
+    color: black;
+    transition: 0.5s;
+}
+
+/* Efek hover pada elemen <a> */
+.bodyparent li a:hover{ 
+    transform: scale(1.3); /* Perbesar elemen yang di-hover */
+    opacity: 1;
+    text-decoration: none;
+    color: black;
+}
+
+/* Efek latar belakang saat hover */
+.bodyparent li a:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #fef3e2;
+    transition: 0.5s;
+    transform-origin: center;
+    transform: scaleX(0);
+    z-index: -1;
+    border-radius: 8px; /* Membuat latar belakang menjadi rounded */
+}
+
+.bodyparent li a:hover:before {
+    transition: transform 0.5s;
+    transform-origin: center;
+    transform: scaleX(1);
+}

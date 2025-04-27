@@ -1,3 +1,82 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.nav-link {
+    position: relative;
+    color: #000; /* Warna teks */
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.3s ease; /* Animasi transisi */
+}
+
+.nav-link:hover {
+    color: #2a7fff; /* Warna teks saat hover */
+    transform: translateY(-3px); /* Membuat teks sedikit timbul */
+}
+
+.nav-link::before {
+    content: '';
+    position: absolute;
+    bottom: -2px; /* Garis muncul di bawah teks */
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #2a7fff; /* Warna garis */
+    transition: all 0.3s ease; /* Animasi transisi */
+}
+
+.nav-link:hover::before {
+    width: 100%; /* Garis memanjang dari kiri ke kanan */
+}
+
+.nav-link:hover::after {
+    content: '';
+    position: absolute;
+    inset: -5px; /* Border di sekitar teks */
+    border: 1px solid #2a7fff;
+    border-radius: 4px;
+    z-index: -1;
+    opacity: 1;
+    transition: all 0.3s ease;
+}
+
+/* Animasi slide down */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-slide-down {
+    animation: slideDown 0.3s ease-in-out;
+}
+
+/* Tampilan search bar */
+#searchBar {
+    background-color: #f0f8ff; /* Warna latar belakang */
+    border-bottom: 1px solid #8bd0fb; /* Warna border */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow */
+    z-index: 50; /* Pastikan berada di atas elemen lain */
+}
+
+#searchBar input {
+    border: 1px solid #8bd0fb; /* Warna border input */
+    border-radius: 4px; /* Bingkai kecil */
+    padding: 8px 12px; /* Padding dalam input */
+    width: 100%; /* Lebar penuh */
+    font-size: 16px; /* Ukuran font */
+    outline: none; /* Hilangkan outline default */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Animasi fokus */
+}
+
+#searchBar input:focus {
+    border-color: #2a7fff; /* Warna border saat fokus */
+    box-shadow: 0 0 4px #2a7fff; /* Shadow saat fokus */
+}
+
