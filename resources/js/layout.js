@@ -2,9 +2,17 @@ console.log("Layout.js loaded successfully");
 
 // Definisikan fungsi di global scope
 window.toggleDropdown = function () {
-    const dropdown = document.getElementById("dropdownMenu");
-    if (dropdown) {
-        dropdown.classList.toggle("hidden"); // Toggle class 'hidden' untuk menampilkan/menghilangkan dropdown
+    const dropdownMenu = document.getElementById('dropdownMenu');
+    if (dropdownMenu.classList.contains('show')) {
+        dropdownMenu.classList.remove('show');
+        setTimeout(() => {
+            dropdownMenu.classList.add('hidden');
+        }, 300); // Durasi animasi
+    } else {
+        dropdownMenu.classList.remove('hidden');
+        setTimeout(() => {
+            dropdownMenu.classList.add('show');
+        }, 10); // Sedikit delay untuk memulai animasi
     }
 };
 

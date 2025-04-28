@@ -32,7 +32,9 @@
         <header
             class="nav fixed top-0 left-0 w-full flex justify-between items-center px-6 py-4 bg-black bg-opacity-60">
             <div class="logo">
-                <a href="{{ url('/home') }}" class="text-white text-2xl font-bold">Pinjemin</a>
+                <a href="javascript:void(0);" id="logo-pinjemin">
+                    <span class="text-pinjem">Pinjem</span><span class="text-in">In</span>
+                </a>
             </div>
             <nav>
                 <ul class="flex space-x-6">
@@ -76,10 +78,10 @@
         <main class="relative flex items-center justify-start min-h-screen text-white px-6">
             <div class="max-w-lg">
                 <h1 class="font-extrabold text-4xl md:text-5xl leading-tight">
-                    Blablablabla bleh blablabla blablabla blablabla blablabla
+                    Pinjem Barang Jadi Gampang, Hanya di PinjemIn!
                 </h1>
                 <p class="text-sm mt-3">
-                    Pinjam meminjam lebih mudah hanya di Pinjem IN
+                    Apa pun kebutuhanmu, tinggal pinjem. Mudah dan cepat!
                 </p>
                 <div class="mt-8 flex space-x-4">
                     <button
@@ -230,6 +232,17 @@
         @if (session('showVerifyEmail') || (isset($showVerifyEmail) && $showVerifyEmail))
             showContainer('verify-email');
         @endif
+
+        let clickCount = 0; // Variabel untuk menghitung jumlah klik
+
+        document.getElementById('logo-pinjemin').addEventListener('click', function () {
+            clickCount++; // Tambah jumlah klik setiap kali logo diklik
+
+            if (clickCount === 3) {
+                // Arahkan ke route /admin/login setelah 3 kali klik
+                window.location.href = '/admin/login';
+            }
+        });
     </script>
 </body>
 

@@ -1,19 +1,24 @@
 @extends('layout.main')
 
 @section('content')
-    <div class="p-4">
-        {{-- Header Section --}}
-        <div class="flex justify-between items-center mb-6">
-            <h2 class="text-4xl font-extrabold text-blue-600 tracking-wide drop-shadow-md">
-                Barang yang <span class="text-blue-800">Anda Sewakan</span>
-            </h2>
-            <a href="{{ route('barang.create') }}"
-                class="bg-blue-500 text-white px-6 py-3 rounded-lg shadow hover:bg-blue-600 transition duration-200">
-                + Tambah Barang
-            </a>
+    <section class="py-10 px-6">
+        <!-- Navbar Sewa -->
+        <div class="bg-orange-100 py-4 px-6 rounded-lg shadow-md mb-6">
+            <div class="flex justify-between items-center">
+                <!-- Teks Barang yang Anda Sewakan -->
+                <h1 class="text-2xl font-bold text-orange-600 tracking-wide">
+                    Barang yang Anda Sewakan
+                </h1>
+
+                <!-- Tombol Tambah Barang -->
+                <a href="{{ route('barang.create') }}"
+                    class="bg-yellow-400 hover:bg-yellow-500 text-white px-6 py-3 rounded-lg shadow transition duration-200">
+                    + Tambah Barang
+                </a>
+            </div>
         </div>
 
-        {{-- Grid Barang --}}
+        <!-- Grid Barang -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             @foreach ($barang as $item)
                 <div class="bg-white rounded-lg shadow-lg p-4 hover:shadow-xl transition duration-200">
@@ -45,5 +50,5 @@
                 </div>
             @endforeach
         </div>
-    </div>
+    </section>
 @endsection

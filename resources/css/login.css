@@ -84,3 +84,53 @@ header .button .LoginBtn:hover {
     color: black; /* Warna teks saat hover */
     transform: scale(1.05); /* Efek zoom saat hover */
 }
+
+.logo a{
+    margin-right: 20px;
+    -webkit-text-stroke: 0.4px white;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.logo .text-pinjem {
+    color: white; /* Warna awal teks "Pinjem" */
+    transition: transform 0.5s ease, color 0.5s ease; /* Animasi transisi warna dan posisi */
+}
+
+.logo .text-in {
+    color: #fab12f; /* Warna awal teks "In" */
+    -webkit-text-stroke: 0.4px #fab12f;
+    transition: transform 0.5s ease, color 0.5s ease; /* Animasi transisi warna dan posisi */
+}
+
+.logo a:hover .text-pinjem {
+    color: #fab12f; /* Ubah warna teks "Pinjem" menjadi orange */
+    -webkit-text-stroke: 0.4px #fab12f;
+    transform: translateX(10px); /* Geser ke kanan */
+}
+
+.logo a:hover .text-in {
+    color: white; /* Ubah warna teks "In" menjadi hitam */
+    -webkit-text-stroke: 0.4px white;
+    transform: translateX(-10px); /* Geser ke kiri */
+}
+
+.logo a:hover {
+    text-decoration: none; /* Ubah warna teks menjadi kuning saat hover */
+}
+
+.logo a:hover::before {
+    width: 100%; /* Garis akan memanjang hingga sepanjang teks */
+}
+
+.logo a::before {
+    content: '';
+    position: absolute;
+    bottom: -5px; /* Jarak garis bawah dari teks */
+    left: 0;
+    width: 0; /* Awalnya garis tidak terlihat */
+    height: 3px; /* Ketebalan garis */
+    background: #fab12f; /* Warna kuning */
+    transition: width 0.3s ease; /* Animasi lebar garis */
+    z-index: -1; /* Pastikan garis berada di belakang teks */
+}

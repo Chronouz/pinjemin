@@ -35,7 +35,9 @@
         {{-- Logo --}}
         <li>
             <div class="logo">
-                <a href="{{ url('/home') }}">Pinjemin</a>
+                <a href="{{ url('/home') }}">
+                    <span class="text-pinjem">Pinjem</span><span class="text-in">In</span>
+                </a>
             </div>
         </li>
 
@@ -69,7 +71,7 @@
 
                     {{-- Popup Menu --}}
                     <div id="dropdownMenu"
-                        class="hidden absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg z-50">
+                        class="hidden absolute right-0 mt-2 w-56 bg-white border rounded shadow-lg z-50 transform scale-95 opacity-0 transition-all duration-300">
                         {{-- Profil dan Nama --}}
                         <div class="px-4 py-2 border-b">
                             <div class="flex items-center gap-2">
@@ -93,7 +95,7 @@
                             class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Permintaan</a>
                         <a href="#"
                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                            class="block px-4 py-2 text-center text-white bg-[#2a7fff] hover:bg-[#1a5bbf] rounded">
+                            class="block px-4 py-2 text-center text-white bg-orange-500 hover:bg-orange-600 rounded">
                             Logout
                         </a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">

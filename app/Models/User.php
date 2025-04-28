@@ -23,6 +23,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'password',
+        'usertype',
     ];
 
     /**
@@ -64,6 +65,29 @@ class User extends Authenticatable implements MustVerifyEmail
     
     public function permintaanKeluar() {
         return $this->hasMany(Permintaan::class, 'peminjam_id');
+    }
+
+    // Event deleting untuk menghapus data terkait
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($user) {
+            // Hapus data profil terkait
+            $user->profil()->delete();
+
+            // Hapus data barang terkait
+            $user->barang()->delete();
+
+            // Hapus data pinjam terkait
+            $user->pinjam()->delete();
+
+            // Hapus data permintaan masuk terkait
+            $user->permintaanMasuk()->delete();
+
+            // Hapus data permintaan keluar terkait
+            $user->permintaanKeluar()->delete();
+        });
     }
     
 }

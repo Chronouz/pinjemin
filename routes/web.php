@@ -14,6 +14,7 @@ use App\Http\Controllers\RiwayatController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return redirect()->route('login'); // Arahkan ke halaman login
@@ -30,10 +31,6 @@ Route::post('/login/submit', [AuthController::class, 'submitlogin'])->name('logi
 
 Route::get('/barang', [BarangController::class, 'index'])->name('barang.index');
 Route::get('/barang/{barang}', [BarangController::class, 'show'])->name('barang.show');
-
-Route::get('/akun', function () {
-    return view('akun.akun');
-});
 
 Route::get('/dashboard', function () {
     return redirect()->route('home'); // Arahkan ke halaman dashboard
@@ -103,3 +100,7 @@ require __DIR__.'/auth.php';
 
 route::get('dashboard/admin',[HomeController::class,'index']);
 
+Route::get('/logout-and-home', function () {
+    Auth::logout();
+    return redirect('/');
+})->name('logout.and.home');

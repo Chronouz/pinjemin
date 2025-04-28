@@ -1,38 +1,41 @@
 @extends('layout.main')
 
 @section('content')
-    <div class="p-4">
-        {{-- Header Section --}}
-        <div class="flex justify-between items-center mb-6">
-            <h2 class="text-4xl font-extrabold text-blue-600 tracking-wide drop-shadow-md">
-                Barang yang <span class="text-blue-800">Anda Pinjam</span>
-            </h2>
-        </div>
-
-        {{-- Grid Barang --}}
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            @forelse ($Pinjam as $item)
-                <div class="bg-white rounded-lg shadow-lg p-4 hover:shadow-xl transition duration-200">
-                    <img src="{{ asset('storage/' . $item->barang->image_path) }}" class="w-full h-48 object-cover mb-4 rounded-lg">
-                    <h3 class="font-semibold text-lg text-gray-800">{{ $item->barang->name }}</h3>
-                    <p class="text-sm text-gray-500 mb-2">{{ $item->barang->category }} - {{ $item->barang->location }}</p>
-                    <p class="text-sm mb-2 text-gray-600">{{ Str::limit($item->barang->description, 100) }}</p>
-                    <div class="text-sm font-bold text-green-600">Rp {{ number_format($item->barang->cost, 0, ',', '.') }}</div>
-                    <div class="text-sm font-bold {{ $item->permintaan && $item->permintaan->status === 'diterima' ? 'text-green-600' : 'text-red-600' }}">
-                        {{ $item->permintaan && $item->permintaan->status === 'diterima' ? 'Diterima' : 'Pending' }}
-                    </div>
-                    <div class="flex justify-between mt-4">
-                        <button onclick="showReturnPopup({{ $item->barang->id }})"
-                            class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 transition">
-                            Kembalikan
-                        </button>
-                    </div>
-                </div>
-            @empty
-                <p class="text-gray-500">Belum ada barang yang dipinjam.</p>
-            @endforelse
+<section class="py-10 px-6">
+    <!-- Navbar Pinjam -->
+    <div class="bg-orange-100 py-4 px-6 rounded-lg shadow-md mb-6">
+        <div class="flex justify-between items-center">
+            <!-- Teks Barang yang Anda Pinjam -->
+            <h1 class="text-2xl font-bold text-orange-600 tracking-wide">
+                Barang yang Anda Pinjam
+            </h1>
         </div>
     </div>
+
+    <!-- Grid Barang -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        @forelse ($Pinjam as $item)
+            <div class="bg-white rounded-lg shadow-lg p-4 hover:shadow-xl transition duration-200">
+                <img src="{{ asset('storage/' . $item->barang->image_path) }}" class="w-full h-48 object-cover mb-4 rounded-lg">
+                <h3 class="font-semibold text-lg text-gray-800">{{ $item->barang->name }}</h3>
+                <p class="text-sm text-gray-500 mb-2">{{ $item->barang->category }} - {{ $item->barang->location }}</p>
+                <p class="text-sm mb-2 text-gray-600">{{ Str::limit($item->barang->description, 100) }}</p>
+                <div class="text-sm font-bold text-green-600">Rp {{ number_format($item->barang->cost, 0, ',', '.') }}</div>
+                <div class="text-sm font-bold {{ $item->permintaan && $item->permintaan->status === 'diterima' ? 'text-green-600' : 'text-red-600' }}">
+                    {{ $item->permintaan && $item->permintaan->status === 'diterima' ? 'Diterima' : 'Pending' }}
+                </div>
+                <div class="flex justify-between mt-4">
+                    <button onclick="showReturnPopup({{ $item->barang->id }})"
+                        class="bg-yellow-400 hover:bg-yellow-500 text-white px-4 py-2 rounded shadow">
+                        Kembalikan
+                    </button>
+                </div>
+            </div>
+        @empty
+            <p class="text-gray-500">Belum ada barang yang dipinjam.</p>
+        @endforelse
+    </div>
+</section>
 
     <!-- Popup Konfirmasi -->
     <div id="return-popup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">

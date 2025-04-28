@@ -27,19 +27,54 @@ body {
 
 .logo a{
     margin-right: 20px;
-    -webkit-text-stroke: 0.7px black;
+    -webkit-text-stroke: 0.4px black;
     position: relative;
+    transition: color 0.3s ease;
 }
-.logo a::before{
-    content: '';
-    background: #fab12f;
-    width: 5px;
-    height: 5px;
-    position: absolute;
-    bottom: 0;
-    left: -5;
 
+.logo .text-pinjem {
+    color: black; /* Warna awal teks "Pinjem" */
+    transition: transform 0.5s ease, color 0.5s ease; /* Animasi transisi warna dan posisi */
 }
+
+.logo .text-in {
+    color: #fab12f; /* Warna awal teks "In" */
+    -webkit-text-stroke: 0.4px #fab12f;
+    transition: transform 0.5s ease, color 0.5s ease; /* Animasi transisi warna dan posisi */
+}
+
+.logo a:hover .text-pinjem {
+    color: #fab12f; /* Ubah warna teks "Pinjem" menjadi orange */
+    -webkit-text-stroke: 0.4px #fab12f;
+    transform: translateX(10px); /* Geser ke kanan */
+}
+
+.logo a:hover .text-in {
+    color: black; /* Ubah warna teks "In" menjadi hitam */
+    -webkit-text-stroke: 0.4px black;
+    transform: translateX(-10px); /* Geser ke kiri */
+}
+
+.logo a:hover {
+    text-decoration: none; /* Ubah warna teks menjadi kuning saat hover */
+}
+
+.logo a:hover::before {
+    width: 100%; /* Garis akan memanjang hingga sepanjang teks */
+}
+
+.logo a::before {
+    content: '';
+    position: absolute;
+    bottom: -5px; /* Jarak garis bawah dari teks */
+    left: 0;
+    width: 0; /* Awalnya garis tidak terlihat */
+    height: 3px; /* Ketebalan garis */
+    background: #fab12f; /* Warna kuning */
+    transition: width 0.3s ease; /* Animasi lebar garis */
+    z-index: -1; /* Pastikan garis berada di belakang teks */
+}
+
 
 /* -------------------------Tombol------------------------- */
 .nav .button{
@@ -168,4 +203,14 @@ ul {
     transition: transform 0.5s;
     transform-origin: center;
     transform: scaleX(1);
+}
+
+/* Animasi Popup Menu */
+#dropdownMenu {
+    transform-origin: top right; /* Animasi dimulai dari sudut kanan atas */
+}
+
+#dropdownMenu.show {
+    transform: scale(1); /* Ukuran normal */
+    opacity: 1; /* Tampilkan menu */
 }
