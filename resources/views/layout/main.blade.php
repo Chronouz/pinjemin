@@ -5,7 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    {{-- Judul --}}
     <title>Pinjemin</title>
+
+    <!-- Ikon Load -->
+    <link rel="icon" href="{{ asset('images/core/icon.ico') }}" />
+
     @vite('resources/css/app.css')
     @vite('resources/css/nav.css')
     @vite('resources/css/homepage.css')
@@ -55,14 +60,17 @@
         {{-- Ikon dan Foto Profil --}}
         <li>
             <div class="button flex items-center space-x-4">
-                {{-- Tombol Search --}}
-                <button class="text-black text-xl" aria-label="Search" id="searchButton" onclick="toggleSearchBar()">
-                    <i class="fas fa-search"></i>
+                <!-- Tombol Dark Mode -->
+                <button id="darkModeToggle" class="text-black text-xl" aria-label="Toggle Dark Mode">
+                    <i class="fas fa-moon"></i>
                 </button>
-                {{-- Ikon Email --}}
-                <button class="text-black text-xl" aria-label="Email">
+
+                <!-- Tombol Email -->
+                <a href="{{ route('permintaan.index') }}"
+                    class="text-black text-xl hover:text-yellow-500 transition-colors duration-300" aria-label="Email">
                     <i class="fas fa-envelope"></i>
-                </button>
+                </a>
+
                 {{-- Foto Profil --}}
                 <div class="relative">
                     <img src="{{ $authUser->profil?->image_path ? asset('storage/' . $authUser->profil->image_path) : asset('assets/img/default-avatar.png') }}"

@@ -120,21 +120,73 @@
     </section>
 
     <!-- Popup Detail Barang -->
-    <div id="popup-detail" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
-        <div class="bg-white rounded-lg p-6 w-96">
-            <h2 id="popup-title" class="text-xl font-bold mb-4"></h2>
-            <p id="popup-description" class="text-sm mb-4"></p>
-            <p id="popup-price" class="text-sm mb-4"></p>
-            <p id="popup-location" class="text-sm mb-4"></p>
-            <p id="popup-category" class="text-sm mb-4"></p>
-            <p id="popup-stock" class="text-sm mb-4"></p>
-            <p id="popup-condition" class="text-sm mb-4"></p>
-            <a id="popup-whatsapp" href="#" target="_blank" class="text-blue-500 underline mb-4 block">Hubungi via
-                WhatsApp</a>
-            <p id="popup-status" class="text-sm mb-4"></p>
-            <div class="flex justify-between">
-                <button onclick="closePopup()" class="bg-gray-500 text-white px-4 py-2 rounded">Kembali</button>
-                <button onclick="showConfirmation()" class="bg-blue-500 text-white px-4 py-2 rounded">Pinjam</button>
+    <div id="popup-detail"
+        class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden transition-opacity duration-300">
+        <div class="bg-white rounded-lg p-6 w-96 shadow-lg transform scale-95 transition-transform duration-300">
+            <!-- Close Button -->
+            <button onclick="closePopup()" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800">
+                ✕
+            </button>
+
+            <!-- Popup Header -->
+            <div class="flex items-center mb-6">
+                <img id="popup-image" src="#" alt="Barang" class="w-16 h-16 object-cover rounded-full mr-4">
+                <h2 id="popup-title" class="text-xl font-bold text-gray-800"></h2>
+            </div>
+
+            <!-- Popup Content -->
+            <div class="grid grid-cols-2 gap-4">
+                <div class="text-sm text-gray-600 font-semibold">Deskripsi:</div>
+                <div id="popup-description" class="text-sm text-gray-600"></div>
+
+                <div class="text-sm text-gray-600 font-semibold">Harga:</div>
+                <div id="popup-price" class="text-sm text-gray-800 font-bold"></div>
+
+                <div class="text-sm text-gray-600 font-semibold">Lokasi:</div>
+                <div id="popup-location" class="text-sm text-gray-600 flex items-center">
+                    <i class="fas fa-map-marker-alt text-red-500 mr-2"></i>
+                    <span></span>
+                </div>
+
+                <div class="text-sm text-gray-600 font-semibold">Kategori:</div>
+                <div id="popup-category" class="text-sm text-gray-600 flex items-center">
+                    <i class="fas fa-tags text-blue-500 mr-2"></i>
+                    <span></span>
+                </div>
+
+                <div class="text-sm text-gray-600 font-semibold">Stok:</div>
+                <div id="popup-stock" class="text-sm text-gray-600 flex items-center">
+                    <i class="fas fa-box text-green-500 mr-2"></i>
+                    <span></span>
+                </div>
+
+                <div class="text-sm text-gray-600 font-semibold">Kondisi:</div>
+                <div id="popup-condition" class="text-sm text-gray-600 flex items-center">
+                    <i class="fas fa-info-circle text-yellow-500 mr-2"></i>
+                    <span></span>
+                </div>
+
+                <div class="text-sm text-gray-600 font-semibold">Status:</div>
+                <div id="popup-status" class="text-sm font-semibold"></div>
+
+                <div class="col-span-2">
+                    <a id="popup-whatsapp" href="#" target="_blank"
+                        class="bg-green-500 text-white px-4 py-2 rounded flex items-center justify-center hover:bg-green-600 transition">
+                        <i class="fab fa-whatsapp text-white mr-2"></i> Hubungi via WhatsApp
+                    </a>
+                </div>
+            </div>
+
+            <!-- Popup Footer -->
+            <div class="flex justify-between mt-6">
+                <button onclick="closePopup()"
+                    class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 transition">
+                    Kembali
+                </button>
+                <button id="popup-pinjam-button" onclick="showConfirmation()"
+                    class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">
+                    Pinjam
+                </button>
             </div>
         </div>
     </div>
@@ -208,36 +260,55 @@
     }
 
     async function showDetail(id) {
-        try {
-            const response = await fetch(`/api/barang/${id}`);
-            if (!response.ok) {
-                throw new Error('Gagal memuat data barang.');
+            try {
+                const response = await fetch(`/api/barang/${id}`);
+                if (!response.ok) {
+                    throw new Error('Gagal memuat data barang.');
+                }
+
+                const barang = await response.json();
+
+                selectedBarangId = barang.id;
+                selectedPemilikId = barang.user_id;
+
+                document.getElementById('popup-title').textContent = barang.name;
+                document.getElementById('popup-description').textContent = barang.description;
+                document.getElementById('popup-price').textContent = `Rp${barang.cost}`;
+                document.getElementById('popup-location').textContent = `${barang.location}`;
+                document.getElementById('popup-category').textContent = `${barang.category}`;
+                document.getElementById('popup-stock').textContent = `${barang.stock}`;
+                document.getElementById('popup-condition').textContent = `${barang.condition}`;
+
+                // Tambahkan teks dinamis ke link WhatsApp
+                const whatsappText = `Halo, saya tertarik untuk meminjam barang ${barang.name}`;
+                const whatsappLink = `${barang.link}?text=${encodeURIComponent(whatsappText)}`;
+                document.getElementById('popup-whatsapp').href = whatsappLink;
+
+                // Update status
+                const statusElement = document.getElementById('popup-status');
+                if (barang.status) {
+                    statusElement.textContent = 'Tersedia';
+                    statusElement.className = 'text-green-500';
+                    document.getElementById('popup-pinjam-button').disabled = false;
+                    document.getElementById('popup-pinjam-button').classList.remove('opacity-50', 'cursor-not-allowed');
+                } else {
+                    statusElement.textContent = 'Tidak Tersedia';
+                    statusElement.className = 'text-red-500';
+                    document.getElementById('popup-pinjam-button').disabled = true;
+                    document.getElementById('popup-pinjam-button').classList.add('opacity-50', 'cursor-not-allowed');
+                }
+
+                // Update gambar barang
+                document.getElementById('popup-image').src = `/storage/${barang.image_path}`;
+
+                // Tampilkan popup
+                const popup = document.getElementById('popup-detail');
+                popup.classList.remove('hidden');
+                popup.classList.add('opacity-100', 'scale-100');
+            } catch (error) {
+                alert(error.message);
             }
-
-            const barang = await response.json();
-
-            // Simpan ID barang dan pemilik untuk digunakan di fungsi konfirmasi
-            selectedBarangId = barang.id;
-            selectedPemilikId = barang.user_id; // Pastikan kolom user_id ada di database
-
-            // Tampilkan data barang di popup detail
-            document.getElementById('popup-title').textContent = barang.name;
-            document.getElementById('popup-description').textContent = barang.description;
-            document.getElementById('popup-price').textContent = `Harga: ${barang.cost}`;
-            document.getElementById('popup-location').textContent = `Lokasi: ${barang.location}`;
-            document.getElementById('popup-category').textContent = `Kategori: ${barang.category}`;
-            document.getElementById('popup-stock').textContent = `Stok: ${barang.stock}`;
-            document.getElementById('popup-condition').textContent = `Kondisi: ${barang.condition}`;
-            document.getElementById('popup-whatsapp').href = barang.link;
-            document.getElementById('popup-status').textContent =
-                `Status: ${barang.status ? 'Tersedia' : 'Tidak Tersedia'}`;
-
-            // Tampilkan popup detail
-            document.getElementById('popup-detail').classList.remove('hidden');
-        } catch (error) {
-            alert(error.message);
         }
-    }
 
     function closePopup() {
         const popupDetail = document.getElementById('popup-detail');

@@ -36,11 +36,11 @@ Route::get('/dashboard', function () {
     return redirect()->route('home'); // Arahkan ke halaman dashboard
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-    $request->fulfill();
-    // Redirect ke halaman kustom setelah verifikasi
-    return redirect('/home'); // Ganti '/custom-page' dengan route kustom Anda
-})->middleware(['auth', 'signed'])->name('verification.verify');
+// Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+//     $request->fulfill();
+//     // Redirect ke halaman kustom setelah verifikasi
+//     return redirect('/home'); // Ganti '/custom-page' dengan route kustom Anda
+// })->middleware(['auth', 'signed'])->name('verification.verify');
 
 Route::prefix('api')->group(function () {
     // Endpoint untuk mendapatkan barang berdasarkan kategori
@@ -62,8 +62,6 @@ Route::middleware('auth', 'verified')->group(function () {
     })->name('aboutus');
     Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
     Route::get('/profile', [UserController::class, 'show'])->name('profile.show');
-    Route::get('/barang/sewa', [BarangController::class, 'sewa'])->name('barang.sewa');
-    Route::get('/barang/pinjam', [BarangController::class, 'index'])->name('barang.pinjam');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

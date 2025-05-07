@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Pinjemin - Login</title>
 
+    <!-- Ikon Load -->
+    <link rel="icon" href="{{ asset('images/core/icon.ico') }}" />
+
     <!-- Font & Icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
@@ -16,8 +19,7 @@
     <!-- Custom CSS -->
     @vite('resources/css/login.css')
 
-    <!-- Custom JavaScript -->
-    @vite('resources/js/login.js')
+
 
 </head>
 
@@ -60,7 +62,7 @@
             </div>
         </header>
 
-        <!-- Email Verification Notification -->
+        {{-- <!-- Email Verification Notification -->
         @if (session('status') == 'verification-link-sent')
             <div
                 class="fixed top-16 left-0 w-full bg-yellow-400 text-black px-6 py-3 flex justify-between items-center z-50">
@@ -72,7 +74,7 @@
                     </button>
                 </form>
             </div>
-        @endif
+        @endif --}}
 
         <!-- Main Content -->
         <main class="relative flex items-center justify-start min-h-screen text-white px-6">
@@ -173,6 +175,11 @@
 
                 <!-- Log In Form -->
                 <div id="login-form" class="hidden">
+                    @if (session('status'))
+                        <div class="bg-green-100 text-green-800 px-4 py-2 rounded mb-4">
+                            {{ session('status') }}
+                        </div>
+                    @endif
                     <h2 class="text-2xl font-bold mb-4 text-black">Log In</h2>
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
@@ -222,20 +229,41 @@
             </div>
         </section>
     </div>
+    <!-- Custom JavaScript -->
+    @vite('resources/js/login.js')
 
     <!-- Custom JavaScript -->
     <script>
-        @if (request()->is('verify-email'))
-            showContainer('verify-email');
-        @endif
+        document.addEventListener('DOMContentLoaded', function() {
+            @if (request()->is('verify-email'))
+                showContainer('verify-email');
+            @endif
 
-        @if (session('showVerifyEmail') || (isset($showVerifyEmail) && $showVerifyEmail))
-            showContainer('verify-email');
-        @endif
+            @if (session('showVerifyEmail') || (isset($showVerifyEmail) && $showVerifyEmail))
+                showContainer('verify-email');
+            @endif
+
+            @if (session('showLogin'))
+                showContainer('login'); // Buka form login jika session showLogin ada
+            @endif
+
+            @if (session('showLogin') && session('status'))
+                // Tampilkan pesan status jika session showLogin dan status ada
+                const statusMessage = document.createElement('div');
+                statusMessage.className = 'fixed top-16 left-1/2 transform -translate-x-1/2 bg-green-100 text-green-800 px-4 py-2 rounded shadow-lg z-50';
+                statusMessage.innerText = "{{ session('status') }}";
+                document.body.appendChild(statusMessage);
+
+                // Hapus pesan setelah beberapa detik
+                setTimeout(() => {
+                    statusMessage.remove();
+                }, 5000);
+            @endif
+        });
 
         let clickCount = 0; // Variabel untuk menghitung jumlah klik
 
-        document.getElementById('logo-pinjemin').addEventListener('click', function () {
+        document.getElementById('logo-pinjemin').addEventListener('click', function() {
             clickCount++; // Tambah jumlah klik setiap kali logo diklik
 
             if (clickCount === 3) {

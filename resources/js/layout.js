@@ -135,3 +135,27 @@ document.addEventListener("DOMContentLoaded", function () {
         cropperModal.classList.add("hidden");
     });
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const body = document.body;
+
+    // Periksa preferensi dark mode dari localStorage
+    if (localStorage.getItem('darkMode') === 'enabled') {
+        body.classList.add('dark');
+        darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>'; // Ganti ikon ke matahari
+    }
+
+    // Toggle dark mode
+    darkModeToggle.addEventListener('click', function () {
+        if (body.classList.contains('dark')) {
+            body.classList.remove('dark');
+            localStorage.setItem('darkMode', 'disabled');
+            darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>'; // Ganti ikon ke bulan
+        } else {
+            body.classList.add('dark');
+            localStorage.setItem('darkMode', 'enabled');
+            darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>'; // Ganti ikon ke matahari
+        }
+    });
+});

@@ -16,7 +16,7 @@
 }
 
 .nav-link::before {
-    content: '';
+    content: "";
     position: absolute;
     bottom: -2px; /* Garis muncul di bawah teks */
     left: 0;
@@ -31,7 +31,7 @@
 }
 
 .nav-link:hover::after {
-    content: '';
+    content: "";
     position: absolute;
     inset: -5px; /* Border di sekitar teks */
     border: 1px solid #2a7fff;
@@ -80,3 +80,162 @@
     box-shadow: 0 0 4px #2a7fff; /* Shadow saat fokus */
 }
 
+/* Dark Mode Styles */
+body.dark {
+    background-color: #1a202c; /* Warna latar belakang gelap */
+    color: #f7fafc; /* Warna teks terang */
+}
+
+header.dark {
+    background-color: #2d3748; /* Warna header gelap */
+    color: #f7fafc;
+}
+
+.dark .bg-white {
+    background-color: #2d3748 !important; /* Ganti elemen putih menjadi gelap */
+}
+
+.dark .text-black {
+    color: #f7fafc !important; /* Ganti teks hitam menjadi terang */
+}
+
+.dark .border-gray-300 {
+    border-color: #4a5568 !important; /* Ganti warna border menjadi gelap */
+}
+
+.dark .bg-gray-100 {
+    background-color: #4a5568 !important; /* Ganti elemen abu-abu menjadi gelap */
+}
+
+.dark .hover\:bg-gray-100:hover {
+    background-color: #2d3748 !important; /* Ganti hover abu-abu menjadi gelap */
+}
+
+.dark .bg-blue-500 {
+    background-color: #3182ce !important; /* Warna biru tetap */
+}
+
+.dark .hover\:bg-blue-600:hover {
+    background-color: #2b6cb0 !important; /* Hover biru tetap */
+}
+
+/* Dark Mode Styles for Text */
+.dark .text-gray-800 {
+    color: #f7fafc !important; /* Teks terang untuk dark mode */
+}
+
+.dark .text-gray-600 {
+    color: #a0aec0 !important; /* Teks abu-abu terang untuk dark mode */
+}
+
+.dark .text-orange-600 {
+    color: #f6ad55 !important; /* Warna oranye terang untuk dark mode */
+}
+
+/* Default Styles for Dropdown */
+select {
+    background-color: #ffffff; /* Warna latar belakang putih */
+    color: #000000; /* Warna teks hitam */
+    border-color: #cbd5e0; /* Warna border abu-abu terang */
+}
+
+/* Default Styles for Dropdown Options */
+option {
+    background-color: #ffffff; /* Warna latar belakang putih */
+    color: #000000; /* Warna teks hitam */
+}
+
+/* Dark Mode Styles for Dropdown */
+.dark select {
+    background-color: #2d3748; /* Warna latar belakang gelap */
+    color: #a0aec0; /* Warna teks abu-abu terang */
+    border-color: #4a5568; /* Warna border gelap */
+}
+
+.dark option {
+    background-color: #2d3748; /* Warna latar belakang opsi */
+    color: #a0aec0; /* Warna teks opsi */
+}
+
+/* Animasi untuk dropdown */
+.group:hover .group-hover\:block {
+    display: block;
+}
+
+.group-hover\:block {
+    display: none;
+}
+
+.transition-all {
+    transition: all 0.3s ease-in-out;
+}
+
+.hover\:bg-yellow-400:hover {
+    background-color: #f6e05e !important; /* Warna kuning */
+}
+
+.hover\:text-white:hover {
+    color: #ffffff !important; /* Warna teks putih */
+}
+
+/* Dropdown Animasi */
+.group ul {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease-in-out;
+}
+
+.group:hover ul {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Pastikan dropdown berada di atas elemen lainnya */
+.group {
+    position: relative;
+    z-index: 50;
+}
+
+/* Tambahkan shadow untuk dropdown */
+.group ul {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Pastikan dropdown tidak tertimpa elemen lain */
+.group ul {
+    z-index: 50;
+}
+
+/* Hover untuk Button Pilih Kategori */
+#category-filter:hover {
+    background-color: #f6e05e !important; /* Warna kuning */
+    color: #000000 !important; /* Warna teks hitam */
+}
+
+/* Hover untuk Item Menu Dropdown */
+#category-filter option:hover {
+    border: 1px solid #f6e05e; /* Border kuning */
+    background-color: transparent !important; /* Latar belakang tetap transparan */
+    color: #000000 !important; /* Warna teks tetap hitam */
+    transition: all 0.3s ease-in-out; /* Animasi transisi */
+}
+
+/* Hover untuk Ikon Dark Mode */
+#darkModeToggle i:hover {
+    color: #f6e05e; /* Warna kuning untuk ikon saat hover */
+    transition: color 0.3s ease-in-out; /* Animasi transisi */
+}
+
+/* Hover untuk Ikon Email */
+a[aria-label="Email"] i:hover {
+    color: #f6e05e; /* Warna kuning untuk ikon saat hover */
+    transition: color 0.3s ease-in-out; /* Animasi transisi */
+}
+
+/* Hover untuk Elemen <a> */
+a[aria-label="Email"]:hover {
+    color: inherit; /* Pastikan warna teks tidak berubah */
+    text-decoration: none; /* Hilangkan garis bawah */
+}

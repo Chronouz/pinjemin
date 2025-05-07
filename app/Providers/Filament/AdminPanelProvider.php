@@ -25,6 +25,12 @@ class AdminPanelProvider extends PanelProvider
     public function panel(Panel $panel): Panel
     {
         return $panel
+            ->unsavedChangesAlerts()
+            ->favicon(asset('images/core/icon.ico'))
+            ->brandLogo(asset('images/core/icon.png'))
+            ->navigationGroups([
+                'Pengaturan',
+            ])
             ->default()
             ->id('admin')
             ->path('admin')
